@@ -56,19 +56,24 @@ router.get("/:id",isLoggedIn,function (req,res) {
 
 // edit campground
 router.get("/:id/edit",function (req,res) {
-  Campground.findById(req.params.id,function (err,foundCampground) {
-    // is user logged in?
-    if(req.isAuthenticated()){
-      
-    }else{
-        res.send("You are not logged in...!");
-    }
-    if (err) {
-      res.redirect("/campgrounds");
-    }else {
-      res.render("edit",{campground: foundCampground});
-    }
-  })
+//is user logged In?
+  if(req.isAuthenticated()){
+    Campground.findById(req.params.id,function (err,foundCampground) {
+      if (err) {
+        res.redirect("/campgrounds");
+      }else {
+        // is author of  campground and the user is same?
+        if(foundCampground.author.id.equals(req.user._id)){
+          res.render("edit",{campground: foundCampground});
+        }else {
+          res.send("You are not allowed to do it");
+        }
+      }
+    });
+  }else {
+    res.send("You need to Login to do edit");
+  }
+
 });
 
 router.put("/:id",isLoggedIn,function (req,res) {
