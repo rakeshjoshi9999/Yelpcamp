@@ -1,3 +1,5 @@
+// INFORMATION:To get current rate of BTC https://api.coindesk.com/v1/bpi/currentprice/BTC.json
+
 var express = require("express");
 var router = express.Router({mergeParams: true});
 var Campground = require("../models/campgrounds");
@@ -55,28 +57,12 @@ router.get("/:id",isLoggedIn,function (req,res) {
 });
 
 // edit campground
-router.get("/:id/edit",function (req,res) {
-//is user logged In?
-  if(req.isAuthenticated()){
+router.get("/:id/edit",checkCampgroundOwner,function (req,res) {
     Campground.findById(req.params.id,function (err,foundCampground) {
-      if (err) {
-        res.redirect("/campgrounds");
-      }else {
-        // is author of  campground and the user is same?
-        if(foundCampground.author.id.equals(req.user._id)){
           res.render("edit",{campground: foundCampground});
-        }else {
-          res.send("You are not allowed to do it");
-        }
-      }
     });
-  }else {
-    res.send("You need to Login to do edit");
-  }
-
 });
-
-router.put("/:id",isLoggedIn,function (req,res) {
+router.put("/:id",checkCampgroundOwner,function (req,res) {
 Campground.findByIdAndUpdate(req.params.id,req.body.campground,function (err,updatedCampground) {
     if(err){
       console.log(err);
@@ -88,7 +74,7 @@ Campground.findByIdAndUpdate(req.params.id,req.body.campground,function (err,upd
 });
 
 //Destroy campground
-router.delete("/:id",isLoggedIn,function (req,res) {
+router.delete("/:id",checkCampgroundOwner,function (req,res) {
   Campground.findByIdAndRemove(req.params.id,function (err) {
       if(err){
         console.log(err);
@@ -104,6 +90,26 @@ router.delete("/:id",isLoggedIn,function (req,res) {
     });
   });
 });
+
+function checkCampgroundOwner(req,res,next) {
+  if(req.isAuthenticated()){
+    Campground.findById(req.params.id,function (err,foundCampground) {
+      if (err) {
+        res.redirect("/campgrounds");
+      }else {
+        // is author of  campground and the user is same?
+        if(foundCampground.author.id.equals(req.user._id)){
+          next();
+        }else {
+          res.redirect("back");
+        }
+      }
+    });
+  }else {
+    res.redirect("back");
+  }
+
+}
 
 //This is called middlewareFunction
 function isLoggedIn(req,res,next) {
