@@ -38,6 +38,28 @@ router.post("/",function (req,res) {
   });
 });
 
+//Edit route
+
+router.get("/:comment_id/edit",function (req,res) {
+  Comment.findById(req.params.comment_id, function (err,foundComment) {
+      if(err){
+        res.redirect("back");
+      }else {
+        res.render("editComment",{comment:foundComment,campground_id:req.params.id});//from route campgrounds/:id/comment/comment_id/edit
+      }
+  });
+});
+
+router.put("/:comment_id",function (req,res) {
+  Comment.findByIdAndUpdate(req.params.comment_id,req.body.comment,function (err,updatedCampground) {
+    if(err){
+      res.redirect("back");
+    }else {
+      res.redirect("/campgrounds/"+req.params.id);
+    }
+  });
+});
+
 //This is called middleware
 function isLoggedIn(req,res,next) {
   if(req.isAuthenticated()){
