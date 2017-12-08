@@ -18,7 +18,7 @@
           <p><em>Submitted by: <%= campground.author.username %></em></p>
           <% if (currentUser && campground.author.id.equals(currentUser._id)){ %>
             <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-            <form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+            <form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
               <button class="btn btn-danger">Delete</button>
             </form>
         <% } %>
@@ -33,14 +33,21 @@
           <div class="row">
             <div class="col-md-12">
               <% campground.comments.forEach(function(comment){ %>
+                <div>
                 <strong><%= comment.author.username %></strong>
                 <p>
                   <%= comment.text %>
                   <span class="pull-right">10 days ago</span>
                 </p>
+                <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
                 <a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
                   <button class="btn btn-sm btn-warning">Edit</button></a>
-                <% }); %>
+                <form class="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                <% } %>
+                </div>
+            <% }); %>
             </div>
           </div>
         </div>
