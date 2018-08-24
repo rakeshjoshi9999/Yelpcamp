@@ -1,5 +1,3 @@
-// INFORMATION:To get current rate of BTC https://api.coindesk.com/v1/bpi/currentprice/BTC.json
-
 var express = require("express");
 var router = express.Router({mergeParams: true});
 var Campground = require("../models/campgrounds");
@@ -20,7 +18,7 @@ router.get("/",middleware.isLoggedIn,function (req,res) {
 router.get("/new",middleware.isLoggedIn,function(req,res){
   res.render("new");
 });
-//
+
 router.post("/",middleware.isLoggedIn,function (req,res) {
 //get data from form
 // var name = req.body.name;

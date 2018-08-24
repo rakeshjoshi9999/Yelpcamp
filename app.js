@@ -44,14 +44,6 @@ app.use(indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 
-// var campgrounds =[
-//   {name:"Salmon Creek", image:"https://static.pexels.com/photos/45241/tent-camp-night-star-45241.jpeg"},
-//   {name:"Salmon Creek", image:"https://static.pexels.com/photos/14287/pexels-photo-14287.jpeg"},
-//   {name:"Salmon Creek", image:"https://static.pexels.com/photos/6714/light-forest-trees-morning.jpg"},
-//   {name:"Salmon Creek", image:"https://static.pexels.com/photos/213807/pexels-photo-213807.jpeg"},
-//   {name:"Salmon Creek", image:"https://static.pexels.com/photos/111362/pexels-photo-111362.jpeg"}
-// ];
-
 //listen
 app.listen(3000,function(){
   console.log("Server running on Port 3000");
