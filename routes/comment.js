@@ -25,6 +25,7 @@ router.post("/",middleware.isLoggedIn,function (req,res) {
         if(err){
           console.log("Error while adding the comment"+err);
         }else {
+          console.log("::::",req.body.comment)
           //add username and id
           comment.author.id = req.user._id;
           comment.author.username = req.user.username;

@@ -15,8 +15,13 @@ var campgroundRoutes = require("./routes/campground"),
     commentRoutes    = require("./routes/comment");
 
 var seedDB = require("./seeds");
+
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/yelp_camp",{useMongoClient: true});
+
+// db connection
+// mongoose.connect("mongodb://localhost/yelp_camp",{useMongoClient: true});
+mongoose.connect("mongodb://rakesh:Hope123@ds125362.mlab.com:25362/yelpdb",{useMongoClient: true});
+
 
 // seedDB();
 
@@ -31,6 +36,8 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false
 }));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(User.authenticate()));
@@ -40,6 +47,8 @@ app.use(function (req,res,next) {
   res.locals.currentUser = req.user;
   next();
 });
+
+
 app.use(indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
