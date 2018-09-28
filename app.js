@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express");
 var app = express();
 var methodOverride = require("method-override");
@@ -14,13 +15,15 @@ var campgroundRoutes = require("./routes/campground"),
     indexRoutes      = require("./routes/index"),
     commentRoutes    = require("./routes/comment");
 
-var seedDB = require("./seeds");
+var dbconnect = process.env.DB_CONNECT;
+
+// var seedDB = require("./seeds");
 
 mongoose.Promise = global.Promise;
 
 // db connection
 // mongoose.connect("mongodb://localhost/yelp_camp",{useMongoClient: true});
-mongoose.connect("mongodb://rakesh:Hope123@ds125362.mlab.com:25362/yelpdb",{useMongoClient: true});
+mongoose.connect(`mongodb://${dbconnect}/yelpdb`,{useMongoClient: true});
 
 
 // seedDB();
