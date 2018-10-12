@@ -1,28 +1,38 @@
 body {
-  color: black;
+  margin-top: 50px;
+}
 
+.main-body {
+  padding-top: 20px;
 }
 
 .landing-text {
   text-align: center;
+  color: whitesmoke;
 }
 
 .landing {
-  background-image: url(night-839807_1920.jpg);
+  background-image: url(camping-car-field-1118785.jpg);
   background-size: cover;
   background-position: center;
   font-family: 'Lato', sans-serif;
   color: #f1f1f1;
-  padding: 154px;
+  padding: 151px;
   height: 100%;
-}
-
-.img-thumbnail {
-  padding: 0;
 }
 
 .img {
   width: 100%;
+  height: 500px;
+}
+
+.img-thumbnail {
+  padding: 10px;
+}
+
+#card-button {
+  padding: 8px;
+
 }
 
 .caption-full {

@@ -22,10 +22,13 @@ var dbconnect = process.env.DB_CONNECT;
 mongoose.Promise = global.Promise;
 
 // db connection
-// mongoose.connect("mongodb://localhost/yelp_camp",{useMongoClient: true});
-mongoose.connect(`mongodb://${dbconnect}/yelpdb`, {
+mongoose.connect("mongodb://localhost/yelp_camp", {
   useMongoClient: true
 });
+
+// mongoose.connect(`mongodb://${dbconnect}/yelpdb`, {
+//   useMongoClient: true
+// });
 
 
 // seedDB();
