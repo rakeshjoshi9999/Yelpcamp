@@ -1,12 +1,22 @@
 <% include partials/header %>
-
-<h1>Login</h1>
-
-<form action="/login" method="POST">
-  <input type="text" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
-  <button name="button">LogIn</button>
-
-</form>
-
+<div class="container">
+  <h1 style="text-align:center">LOGIN</h1>
+  <div style="width:50%; margin:20px auto;">
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username" aria-describedby="helpId" placeholder="Enter Username">
+        <small id="helpId" class="form-text text-muted">username@domain.com</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Enter Password">
+        <small id="helpId" class="form-text text-muted">Enter the correct Password</small>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-block my-2 my-sm-0 btn-primary" name="button">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
 <% include partials/footer %>

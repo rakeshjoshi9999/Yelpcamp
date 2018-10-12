@@ -1,15 +1,34 @@
-.img-thumbnail{
-  padding:0;
+body {
+  color: black;
+
 }
 
-.img{
-  width:100%;
+.landing-text {
+  text-align: center;
 }
 
-.caption-full{
+.landing {
+  background-image: url(night-839807_1920.jpg);
+  background-size: cover;
+  background-position: center;
+  font-family: 'Lato', sans-serif;
+  color: #f1f1f1;
+  padding: 154px;
+  height: 100%;
+}
+
+.img-thumbnail {
+  padding: 0;
+}
+
+.img {
+  width: 100%;
+}
+
+.caption-full {
   padding: 1em;
 }
 
-.delete-form{
+.delete-form {
   display: inline;
 }

@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>YelpCamp</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" href="/stylesheets/main.css">
 </head>
-<body style="margin-top:70px">
-	<nav class="navbar navbar-toggleable-md navbar-light bg-faded  fixed-top">
-	  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	    <a class="navbar-brand" href="/"><i class="fa fa-picture-o" aria-hidden="true"></i> YelpCamp</a>
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="nav navbar-nav ml-auto">
-				<% if(!currentUser){ %>
-					<li class="nav-item">
-		        <a class="nav-link" href="/login">SignIn</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="/register">SignUp</a>
-		      </li>
-				<% }else{ %>
-					<li class="nav-item">
-					 <a class="nav-link" href="#"><strong>SignedIn as <%= currentUser.username %></strong></a>
-				 </li>
-					<li class="nav-item">
-					 <a class="nav-link" href="/logout">Logout</a>
-				 </li>
-				<% } %>
-			 </ul>
-	  </div>
-	</nav>
+
+<body>
+	<div>
+		<nav class="navbar navbar-toggleable-md navbar-light bg-faded  fixed-top">
+			<div class="container">
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<a class="navbar-brand" href="/"><i class="fab fa-yelp"></i> YelpCamp</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="nav navbar-nav ml-auto">
+						<% if(!currentUser){ %>
+						<li class="nav-item">
+							<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Register</a>
+						</li>
+						<% }else{ %>
+						<li class="nav-item">
+							<a class="nav-link" href="#"><strong>SignedIn as
+									<%= currentUser.username %></strong></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+						</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>

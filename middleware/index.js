@@ -5,50 +5,50 @@ var Comment = require("../models/comments");
 
 var middlewareObj = {};
 
-middlewareObj.checkCampgroundOwner = function (req,res,next){
-  if(req.isAuthenticated()){
-    Campground.findById(req.params.id,function (err,foundCampground) {
+middlewareObj.checkCampgroundOwner = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    Campground.findById(req.params.id, (err, foundCampground) => {
       if (err) {
         res.redirect("/campgrounds");
-      }else {
+      } else {
         // is author of  campground and the user is same?
-        if(foundCampground.author.id.equals(req.user._id)){
+        if (foundCampground.author.id.equals(req.user._id)) {
           next();
-        }else {
+        } else {
           res.redirect("back");
         }
       }
     });
-  }else {
+  } else {
     res.redirect("back");
   }
 
 }
 
-middlewareObj.checkCommentOwner = function (req,res,next) {
-  if(req.isAuthenticated()){
-    Comment.findById(req.params.comment_id,function (err,foundComment) {
+middlewareObj.checkCommentOwner = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    Comment.findById(req.params.comment_id, (err, foundComment) => {
       if (err) {
         res.redirect("/campgrounds");
-      }else {
+      } else {
         // is author of  campground and the user is same?
-        if(foundComment.author.id.equals(req.user._id)){
+        if (foundComment.author.id.equals(req.user._id)) {
           next();
-        }else {
+        } else {
           res.redirect("back");
         }
       }
     });
-  }else {
+  } else {
     res.redirect("back");
   }
 
 }
 
-middlewareObj.isLoggedIn = function (req,res,next){
-  if(req.isAuthenticated()){
+middlewareObj.isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
     next();
-  }else {
+  } else {
     res.redirect("/login");
   }
 }
