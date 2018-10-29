@@ -3,9 +3,9 @@
 A Web Application that lists all the Campgrounds near you and displays the details and comments about the campground.
 
 
-Front - End is developed with HTML5, Bootstrap 4, Javascript.
-MongoDB is used for storing the data about the campgrounds and users.
-NodeJS and ExpressJS is used to handle the routing and serving the views.
+Front - End is developed with HTML5, Bootstrap 4, Javascript.<br>
+MongoDB is used for storing the data about the campgrounds and users.<br>
+NodeJS and ExpressJS is used to handle the routing and serving the views.<br>
 
 
 # Steps
